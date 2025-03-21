@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-gm88l@42y3(%e+a!ky3f-62ieh&tah_odvda1iruld-scj&*94
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "18.226.181.26"]
+ALLOWED_HOSTS = ["localhost", "18.220.214.130"]
 
 
 # Application definition
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'recipebrowser.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'main' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,127 @@
+<!-- templates/main/view_recipes.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .recipe-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-item strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .recipe-item p {
+            margin: 5px 0;
+        }
+
+        .button {
+            background-color: #1d3557;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #457b9d;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 60%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 8px 15px;
+            background-color: #1d3557;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #457b9d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Recipes</h1>
+
+        <div class="search-container">
+            <form method="GET" action="{% url 'view_recipes' %}">
+                <input type="text" name="search_query" placeholder="Search recipes by name or ingredient..." />
+                <input type="submit" value="Search" />
+            </form>
+            <p>
+                Current search: {% if search_query %}{{ search_query }}{% else %}none{% endif %}
+            </p>
+        </div>
+
+        <form method="POST" action="{% url 'delete_recipes' %}">
+            {% csrf_token %}
+            <ul>
+                {% for recipe in recipes %}
+                    <li class="recipe-item">
+                        <input type="checkbox" name="recipes_to_delete" value="{{ recipe.id }}">
+                        <strong>{{ recipe.name }}</strong>
+                        <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                        <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                        <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+                        <p><strong>Preparation Time:</strong> {{ recipe.prep_time }} minutes</p>
+                    </li>
+                {% empty %}
+                    <p>No recipes found.</p>
+                {% endfor %}
+            </ul>
+
+            <button type="submit" class="button">Delete Selected</button>
+        </form>
+
+        <a href="{% url 'home' %}"><button class="button">Back to Home</button></a>
+    </div>
+</body>
+</html>
+
+
+

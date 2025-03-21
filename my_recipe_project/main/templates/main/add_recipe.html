@@ -1,0 +1,121 @@
+<!-- templates/main/add_recipe.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Recipe - Recipe Browser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #1d3557; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #457b9d;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #1d3557; 
+            font-size: 16px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Recipe</h1>
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_name">Recipe Name:</label>
+                {{ form.name }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_ingredients">Ingredients:</label>
+                {{ form.ingredients }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_instructions">Instructions:</label>
+                {{ form.instructions }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_difficulty">Difficulty:</label>
+                {{ form.difficulty }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_prep_time">Preparation Time (in minutes):</label>
+                {{ form.prep_time }}
+            </div>
+
+            <button type="submit">Submit Recipe</button>
+        </form>
+
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!-- templates/main/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Browser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px 0;
+            cursor: pointer;
+            background-color:#1d3557; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #457b9d; 
+        }
+        a {
+            display: block; /* I wanted all the buttons to be in a vertical list */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Recipe Browser</h1>
+    <p>Choose an option to get started:</p>
+    <a href="{% url 'view_recipes' %}">
+        <button>View Recipes</button>
+    </a>
+    <a href="{% url 'add_recipe' %}">
+        <button>Add Recipe</button>
+    </a>
+</body>
+</html>
